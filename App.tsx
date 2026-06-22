@@ -144,7 +144,7 @@ function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="dark-content" backgroundColor="#f8fafc" />
+      <StatusBar barStyle="light-content" backgroundColor="#102a43" />
       <View style={styles.topBar}>
         <View style={styles.brandBlock}>
           <Text style={styles.brandEyebrow}>PRITECH</Text>
@@ -207,55 +207,55 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#f8fbff',
   },
   topBar: {
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#102a43',
     paddingHorizontal: 24,
     paddingTop: 12,
-    paddingBottom: 8,
+    paddingBottom: 6,
   },
   brandBlock: {
-    marginBottom: 18,
+    marginBottom: 16,
   },
   brandEyebrow: {
-    color: '#94a3b8',
-    fontSize: 10,
+    color: '#7fb3d5',
+    fontSize: 9,
     fontWeight: '700',
     letterSpacing: 1.2,
-    marginBottom: 6,
+    marginBottom: 4,
   },
   brandTitle: {
-    color: '#0f172a',
-    fontSize: 28,
+    color: '#ffffff',
+    fontSize: 24,
     fontWeight: '700',
   },
   tabRow: {
     flexDirection: 'row',
-    gap: 10,
+    gap: 8,
   },
   topBarButton: {
     borderRadius: 999,
     flex: 1,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 9,
   },
   topBarButtonActive: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#1f4068',
   },
   topBarButtonText: {
-    color: '#94a3b8',
-    fontSize: 14,
+    color: '#d9e2ec',
+    fontSize: 13,
     fontWeight: '600',
     textAlign: 'center',
   },
   topBarButtonTextActive: {
-    color: '#0f172a',
+    color: '#ffffff',
   },
   content: {
     paddingHorizontal: 24,
-    paddingTop: 28,
-    paddingBottom: 48,
+    paddingTop: 30,
+    paddingBottom: 52,
   },
 });
 

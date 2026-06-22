@@ -28,24 +28,24 @@ export function AddTaskScreen({onAddTask}: AddTaskScreenProps) {
 
 const styles = StyleSheet.create({
   header: {
-    marginBottom: 28,
+    marginBottom: 30,
   },
   eyebrow: {
-    color: '#94a3b8',
-    fontSize: 11,
+    color: '#2f6f8f',
+    fontSize: 10,
     fontWeight: '700',
     letterSpacing: 1.1,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   title: {
     color: '#0f172a',
-    fontSize: 34,
+    fontSize: 28,
     fontWeight: '700',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   subtitle: {
     color: '#64748b',
-    fontSize: 16,
-    lineHeight: 26,
+    fontSize: 14,
+    lineHeight: 22,
   },
 });

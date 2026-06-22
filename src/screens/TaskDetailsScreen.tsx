@@ -67,80 +67,80 @@ export function TaskDetailsScreen({
 
 const styles = StyleSheet.create({
   wrapper: {
-    gap: 24,
+    gap: 18,
   },
   emptyScreen: {
     backgroundColor: '#ffffff',
-    borderRadius: 20,
-    padding: 24,
+    borderRadius: 14,
+    padding: 22,
   },
   emptyScreenTitle: {
     color: '#16213e',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '700',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   emptyScreenText: {
     color: '#667085',
-    fontSize: 14,
-    lineHeight: 21,
+    fontSize: 13,
+    lineHeight: 20,
     textAlign: 'center',
   },
   header: {
     paddingTop: 4,
   },
   eyebrow: {
-    color: '#94a3b8',
-    fontSize: 11,
+    color: '#2f6f8f',
+    fontSize: 10,
     fontWeight: '700',
     letterSpacing: 1.1,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   heroTitle: {
     color: '#0f172a',
-    fontSize: 34,
+    fontSize: 28,
     fontWeight: '700',
-    lineHeight: 40,
-    marginBottom: 10,
+    lineHeight: 34,
+    marginBottom: 8,
   },
   heroDescription: {
     color: '#64748b',
-    fontSize: 16,
-    lineHeight: 26,
+    fontSize: 14,
+    lineHeight: 22,
   },
   detailsCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 20,
-    padding: 20,
+    backgroundColor: '#eaf5ef',
+    borderRadius: 14,
+    padding: 18,
   },
   detailRow: {
     gap: 6,
   },
   separator: {
-    backgroundColor: '#e2e8f0',
+    backgroundColor: '#cfe3d7',
     height: 1,
-    marginVertical: 18,
+    marginVertical: 16,
   },
   detailsLabel: {
-    color: '#94a3b8',
-    fontSize: 12,
+    color: '#1f7a5c',
+    fontSize: 11,
     fontWeight: '600',
   },
   detailsValue: {
     color: '#0f172a',
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 14,
+    lineHeight: 20,
   },
   detailsActions: {
-    gap: 12,
+    gap: 10,
   },
   detailsButton: {
     alignItems: 'center',
-    borderRadius: 14,
-    paddingVertical: 15,
+    borderRadius: 12,
+    paddingVertical: 13,
   },
   actionPrimary: {
-    backgroundColor: '#0f172a',
+    backgroundColor: '#102a43',
   },
   actionPrimaryText: {
     color: '#ffffff',
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   actionDangerText: {
     color: '#d92d20',
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
   },
 });

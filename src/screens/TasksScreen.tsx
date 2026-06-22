@@ -45,7 +45,7 @@ export function TasksScreen({
           <Text style={styles.statValue}>{totalCount}</Text>
           <Text style={styles.statLabel}>Total tasks</Text>
         </View>
-        <View style={styles.statCard}>
+        <View style={[styles.statCard, styles.statCardAccent]}>
           <Text style={styles.statValue}>{completedCount}</Text>
           <Text style={styles.statLabel}>Completed</Text>
         </View>
@@ -70,46 +70,49 @@ export function TasksScreen({
 
 const styles = StyleSheet.create({
   header: {
-    marginBottom: 28,
+    marginBottom: 30,
   },
   eyebrow: {
-    color: '#94a3b8',
-    fontSize: 11,
+    color: '#2f6f8f',
+    fontSize: 10,
     fontWeight: '700',
     letterSpacing: 1.1,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   title: {
     color: '#0f172a',
-    fontSize: 34,
+    fontSize: 28,
     fontWeight: '700',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   subtitle: {
     color: '#64748b',
-    fontSize: 16,
-    lineHeight: 26,
+    fontSize: 14,
+    lineHeight: 22,
   },
   statsRow: {
     flexDirection: 'row',
-    gap: 14,
-    marginBottom: 24,
+    gap: 10,
+    marginBottom: 26,
   },
   statCard: {
     flex: 1,
-    backgroundColor: '#ffffff',
-    borderRadius: 20,
-    padding: 20,
+    backgroundColor: '#102a43',
+    borderRadius: 14,
+    padding: 16,
+  },
+  statCardAccent: {
+    backgroundColor: '#1f7a5c',
   },
   statValue: {
-    color: '#0f172a',
-    fontSize: 30,
+    color: '#ffffff',
+    fontSize: 24,
     fontWeight: '700',
-    marginBottom: 6,
+    marginBottom: 4,
   },
   statLabel: {
-    color: '#64748b',
-    fontSize: 14,
+    color: '#d9e2ec',
+    fontSize: 12,
     fontWeight: '500',
   },
 });

@@ -68,9 +68,9 @@ export function TaskItem({task, onDelete, onOpen, onToggle}: TaskItemProps) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#ffffff',
-    borderRadius: 20,
+    borderRadius: 14,
     marginBottom: 12,
-    padding: 20,
+    padding: 16,
   },
   row: {
     flexDirection: 'row',
@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   title: {
     color: '#0f172a',
     flex: 1,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
     marginRight: 12,
   },
@@ -97,30 +97,30 @@ const styles = StyleSheet.create({
   },
   badge: {
     borderRadius: 999,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingHorizontal: 9,
+    paddingVertical: 4,
   },
   badgeCompleted: {
-    backgroundColor: '#e8fbf1',
+    backgroundColor: '#eaf5ef',
   },
   badgePending: {
-    backgroundColor: '#eef4ff',
+    backgroundColor: '#eef4fb',
   },
   badgeText: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '700',
   },
   badgeTextCompleted: {
-    color: '#027a48',
+    color: '#1f7a5c',
   },
   badgeTextPending: {
-    color: '#1d4ed8',
+    color: '#102a43',
   },
   description: {
     color: '#475569',
-    fontSize: 15,
-    lineHeight: 24,
-    marginBottom: 16,
+    fontSize: 13,
+    lineHeight: 20,
+    marginBottom: 14,
   },
   footerRow: {
     alignItems: 'center',
@@ -129,39 +129,39 @@ const styles = StyleSheet.create({
   },
   dateText: {
     color: '#94a3b8',
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '500',
   },
   openHint: {
-    color: '#64748b',
-    fontSize: 12,
+    color: '#2f6f8f',
+    fontSize: 11,
     fontWeight: '500',
   },
   actionsRow: {
     flexDirection: 'row',
-    gap: 12,
-    marginTop: 20,
+    gap: 10,
+    marginTop: 16,
   },
   actionButton: {
     alignItems: 'center',
-    borderRadius: 14,
+    borderRadius: 10,
     flex: 1,
-    paddingVertical: 13,
+    paddingVertical: 11,
   },
   secondaryButton: {
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#eaf5ef',
   },
   secondaryButtonText: {
-    color: '#334155',
-    fontSize: 14,
+    color: '#1f7a5c',
+    fontSize: 13,
     fontWeight: '600',
   },
   deleteButton: {
-    backgroundColor: '#fef2f2',
+    backgroundColor: '#fff5f5',
   },
   deleteButtonText: {
     color: '#d92d20',
-    fontSize: 14,
-    fontWeight: '700',
+    fontSize: 13,
+    fontWeight: '600',
   },
 });

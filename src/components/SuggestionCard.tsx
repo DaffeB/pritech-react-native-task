@@ -34,6 +34,7 @@ export function SuggestionCard({onAddTask}: SuggestionCardProps) {
       setMessage('Loading suggestion...');
 
       const response = await fetch('https://www.boredapi.com/api/activity');
+      console.log(response)
       const data = (await response.json()) as SuggestionResponse;
 
       if (!data.activity) {
@@ -76,40 +77,40 @@ export function SuggestionCard({onAddTask}: SuggestionCardProps) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#ffffff',
-    borderRadius: 20,
+    borderRadius: 14,
     marginBottom: 16,
-    padding: 24,
+    padding: 20,
   },
   eyebrow: {
-    color: '#94a3b8',
-    fontSize: 11,
+    color: '#1f7a5c',
+    fontSize: 10,
     fontWeight: '700',
     letterSpacing: 1.1,
-    marginBottom: 8,
+    marginBottom: 6,
   },
   heading: {
     color: '#0f172a',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   description: {
     color: '#64748b',
-    fontSize: 15,
-    lineHeight: 24,
-    marginBottom: 18,
+    fontSize: 14,
+    lineHeight: 22,
+    marginBottom: 16,
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#0f172a',
-    borderRadius: 16,
-    minHeight: 52,
+    backgroundColor: '#1f7a5c',
+    borderRadius: 12,
+    minHeight: 46,
     justifyContent: 'center',
     paddingHorizontal: 14,
   },
   buttonText: {
     color: '#ffffff',
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
   },
 });
