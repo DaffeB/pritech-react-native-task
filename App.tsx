@@ -1,32 +1,27 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {
   Alert,
-  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
-  View,
 } from 'react-native';
 
+import {AppHeader} from './src/components/AppHeader';
+import {useStoredTasks} from './src/hooks/useStoredTasks';
 import {AddTaskScreen} from './src/screens/AddTaskScreen';
 import {TaskDetailsScreen} from './src/screens/TaskDetailsScreen';
 import {TasksScreen} from './src/screens/TasksScreen';
+import {Screen} from './src/types/navigation';
 import {Task, TaskFormValues, TaskStatusFilter} from './src/types/task';
-import {createTask, getFilteredTasks, initialTasks} from './src/utils/tasks';
-
-type Screen = 'tasks' | 'add' | 'details';
-const TASKS_STORAGE_KEY = 'pritech.tasks';
+import {createTask, getFilteredTasks} from './src/utils/tasks';
 
 function App(): React.JSX.Element {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+  const {tasks, setTasks} = useStoredTasks();
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<TaskStatusFilter>('all');
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [activeScreen, setActiveScreen] = useState<Screen>('tasks');
-  const [hasLoadedTasks, setHasLoadedTasks] = useState(false);
 
   const filteredTasks = useMemo(
     () => getFilteredTasks(tasks, searchQuery, statusFilter),
@@ -34,33 +29,6 @@ function App(): React.JSX.Element {
   );
 
   const completedCount = tasks.filter(task => task.completed).length;
-
-  useEffect(() => {
-    async function loadStoredTasks() {
-      try {
-        const storedTasks = await AsyncStorage.getItem(TASKS_STORAGE_KEY);
-
-        if (storedTasks) {
-          setTasks(JSON.parse(storedTasks) as Task[]);
-        }
-      } catch {
-
-      } finally {
-        setHasLoadedTasks(true);
-      }
-    }
-
-    loadStoredTasks();
-  }, []);
-
-  useEffect(() => {
-    if (!hasLoadedTasks) {
-      return;
-    }
-
-    AsyncStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks)).catch(() => {
-    });
-  }, [hasLoadedTasks, tasks]);
 
   const handleAddTask = (values: TaskFormValues) => {
     const newTask = createTask(values);
@@ -145,56 +113,7 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#102a43" />
-      <View style={styles.topBar}>
-        <View style={styles.brandBlock}>
-          <Text style={styles.brandEyebrow}>PRITECH</Text>
-          <Text style={styles.brandTitle}>Simple Tasks</Text>
-        </View>
-        <View style={styles.tabRow}>
-          <Pressable
-            style={[
-              styles.topBarButton,
-              activeScreen === 'tasks' && styles.topBarButtonActive,
-            ]}
-            onPress={() => setActiveScreen('tasks')}>
-            <Text
-              style={[
-                styles.topBarButtonText,
-                activeScreen === 'tasks' && styles.topBarButtonTextActive,
-              ]}>
-              Tasks
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.topBarButton,
-              activeScreen === 'add' && styles.topBarButtonActive,
-            ]}
-            onPress={() => setActiveScreen('add')}>
-            <Text
-              style={[
-                styles.topBarButtonText,
-                activeScreen === 'add' && styles.topBarButtonTextActive,
-              ]}>
-              Add Task
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.topBarButton,
-              activeScreen === 'details' && styles.topBarButtonActive,
-            ]}
-            onPress={() => setActiveScreen('details')}>
-            <Text
-              style={[
-                styles.topBarButtonText,
-                activeScreen === 'details' && styles.topBarButtonTextActive,
-              ]}>
-              Details
-            </Text>
-          </Pressable>
-        </View>
-      </View>
+      <AppHeader activeScreen={activeScreen} onChangeScreen={setActiveScreen} />
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
@@ -208,49 +127,6 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#f8fbff',
-  },
-  topBar: {
-    backgroundColor: '#102a43',
-    paddingHorizontal: 24,
-    paddingTop: 12,
-    paddingBottom: 6,
-  },
-  brandBlock: {
-    marginBottom: 16,
-  },
-  brandEyebrow: {
-    color: '#7fb3d5',
-    fontSize: 9,
-    fontWeight: '700',
-    letterSpacing: 1.2,
-    marginBottom: 4,
-  },
-  brandTitle: {
-    color: '#ffffff',
-    fontSize: 24,
-    fontWeight: '700',
-  },
-  tabRow: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  topBarButton: {
-    borderRadius: 999,
-    flex: 1,
-    paddingHorizontal: 14,
-    paddingVertical: 9,
-  },
-  topBarButtonActive: {
-    backgroundColor: '#1f4068',
-  },
-  topBarButtonText: {
-    color: '#d9e2ec',
-    fontSize: 13,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  topBarButtonTextActive: {
-    color: '#ffffff',
   },
   content: {
     paddingHorizontal: 24,
