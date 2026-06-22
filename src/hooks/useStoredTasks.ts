@@ -19,7 +19,7 @@ export function useStoredTasks() {
           setTasks(JSON.parse(storedTasks) as Task[]);
         }
       } catch {
-        // Ignore storage read errors and keep seeded tasks.
+
       } finally {
         setHasLoadedTasks(true);
       }
@@ -34,7 +34,7 @@ export function useStoredTasks() {
     }
 
     AsyncStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks)).catch(() => {
-      // Ignore storage write errors and keep the UI responsive.
+
     });
   }, [hasLoadedTasks, tasks]);
 
