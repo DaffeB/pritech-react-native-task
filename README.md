@@ -14,6 +14,7 @@ A simple personal task manager built with React Native and TypeScript.
 - Search tasks by title
 - Filter tasks by status
 - Fetch a task suggestion from a public API
+- Store tasks locally on the device
 
 ## Project structure
 
@@ -67,3 +68,4 @@ When the request succeeds, a suggested task is added to the list automatically.
 - The app uses functional components and hooks only.
 - The implementation focuses on clarity and simple code organization.
 - No unnecessary libraries were added for navigation or state management.
+- Tasks are persisted locally with AsyncStorage.

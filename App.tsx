@@ -1,4 +1,5 @@
-import React, {useMemo, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
   Alert,
   Pressable,
@@ -17,6 +18,7 @@ import {Task, TaskFormValues, TaskStatusFilter} from './src/types/task';
 import {createTask, getFilteredTasks, initialTasks} from './src/utils/tasks';
 
 type Screen = 'tasks' | 'add' | 'details';
+const TASKS_STORAGE_KEY = 'pritech.tasks';
 
 function App(): React.JSX.Element {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -24,6 +26,7 @@ function App(): React.JSX.Element {
   const [statusFilter, setStatusFilter] = useState<TaskStatusFilter>('all');
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [activeScreen, setActiveScreen] = useState<Screen>('tasks');
+  const [hasLoadedTasks, setHasLoadedTasks] = useState(false);
 
   const filteredTasks = useMemo(
     () => getFilteredTasks(tasks, searchQuery, statusFilter),
@@ -31,6 +34,33 @@ function App(): React.JSX.Element {
   );
 
   const completedCount = tasks.filter(task => task.completed).length;
+
+  useEffect(() => {
+    async function loadStoredTasks() {
+      try {
+        const storedTasks = await AsyncStorage.getItem(TASKS_STORAGE_KEY);
+
+        if (storedTasks) {
+          setTasks(JSON.parse(storedTasks) as Task[]);
+        }
+      } catch {
+
+      } finally {
+        setHasLoadedTasks(true);
+      }
+    }
+
+    loadStoredTasks();
+  }, []);
+
+  useEffect(() => {
+    if (!hasLoadedTasks) {
+      return;
+    }
+
+    AsyncStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks)).catch(() => {
+    });
+  }, [hasLoadedTasks, tasks]);
 
   const handleAddTask = (values: TaskFormValues) => {
     const newTask = createTask(values);
