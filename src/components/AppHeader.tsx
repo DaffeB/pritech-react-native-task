@@ -5,10 +5,15 @@ import {Screen} from '../types/navigation';
 
 type AppHeaderProps = {
   activeScreen: Screen;
+  canOpenDetails: boolean;
   onChangeScreen: (screen: Screen) => void;
 };
 
-export function AppHeader({activeScreen, onChangeScreen}: AppHeaderProps) {
+export function AppHeader({
+  activeScreen,
+  canOpenDetails,
+  onChangeScreen,
+}: AppHeaderProps) {
   return (
     <View style={styles.topBar}>
       <View style={styles.brandBlock}>
@@ -50,12 +55,15 @@ export function AppHeader({activeScreen, onChangeScreen}: AppHeaderProps) {
         <Pressable
           style={[
             styles.topBarButton,
+            !canOpenDetails && styles.topBarButtonDisabled,
             activeScreen === 'details' && styles.topBarButtonActive,
           ]}
+          disabled={!canOpenDetails}
           onPress={() => onChangeScreen('details')}>
           <Text
             style={[
               styles.topBarButtonText,
+              !canOpenDetails && styles.topBarButtonTextDisabled,
               activeScreen === 'details' && styles.topBarButtonTextActive,
             ]}>
             Details
@@ -101,6 +109,9 @@ const styles = StyleSheet.create({
   topBarButtonActive: {
     backgroundColor: '#1f4068',
   },
+  topBarButtonDisabled: {
+    opacity: 0.45,
+  },
   topBarButtonText: {
     color: '#d9e2ec',
     fontSize: 13,
@@ -109,5 +120,8 @@ const styles = StyleSheet.create({
   },
   topBarButtonTextActive: {
     color: '#ffffff',
+  },
+  topBarButtonTextDisabled: {
+    color: '#9fb3c8',
   },
 });

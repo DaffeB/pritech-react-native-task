@@ -8,7 +8,7 @@ const TASKS_STORAGE_KEY = 'pritech.tasks';
 
 export function useStoredTasks() {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
-  const [hasLoadedTasks, setHasLoadedTasks] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     async function loadStoredTasks() {
@@ -21,7 +21,7 @@ export function useStoredTasks() {
       } catch {
 
       } finally {
-        setHasLoadedTasks(true);
+        setIsHydrated(true);
       }
     }
 
@@ -29,16 +29,15 @@ export function useStoredTasks() {
   }, []);
 
   useEffect(() => {
-    if (!hasLoadedTasks) {
+    if (!isHydrated) {
       return;
     }
 
-    AsyncStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks)).catch(() => {
-
-    });
-  }, [hasLoadedTasks, tasks]);
+    AsyncStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks)).catch(() => {});
+  }, [isHydrated, tasks]);
 
   return {
+    isHydrated,
     setTasks,
     tasks,
   };

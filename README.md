@@ -21,7 +21,9 @@ A simple personal task manager built with React Native and TypeScript.
 The project is intentionally kept simple:
 
 - `App.tsx` handles screen composition and state
+- `src/hooks` contains storage-related logic
 - `src/components` contains small reusable UI components
+- `src/screens` contains screen-level UI composition
 - `src/types` contains shared TypeScript types
 - `src/utils` contains task helpers
 
@@ -59,7 +61,7 @@ npm run ios
 
 The app uses a public API to fetch a task suggestion:
 
-- `https://www.boredapi.com/api/activity`
+- `https://dummyjson.com/todos/random`
 
 When the request succeeds, a suggested task is added to the list automatically.
 

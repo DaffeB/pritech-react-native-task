@@ -1,6 +1,7 @@
 import React from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 
+import {ScreenIntro} from '../components/ScreenIntro';
 import {Task} from '../types/task';
 
 type TaskDetailsScreenProps = {
@@ -27,11 +28,7 @@ export function TaskDetailsScreen({
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.header}>
-        <Text style={styles.eyebrow}>DETAILS</Text>
-        <Text style={styles.heroTitle}>{task.title}</Text>
-        <Text style={styles.heroDescription}>{task.description}</Text>
-      </View>
+      <ScreenIntro eyebrow="DETAILS" subtitle={task.description} title={task.title} />
 
       <View style={styles.detailsCard}>
         <View style={styles.detailRow}>
@@ -85,28 +82,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 20,
     textAlign: 'center',
-  },
-  header: {
-    paddingTop: 4,
-  },
-  eyebrow: {
-    color: '#2f6f8f',
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 1.1,
-    marginBottom: 8,
-  },
-  heroTitle: {
-    color: '#0f172a',
-    fontSize: 28,
-    fontWeight: '700',
-    lineHeight: 34,
-    marginBottom: 8,
-  },
-  heroDescription: {
-    color: '#64748b',
-    fontSize: 14,
-    lineHeight: 22,
   },
   detailsCard: {
     backgroundColor: '#eaf5ef',

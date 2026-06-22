@@ -17,7 +17,7 @@ import {Task, TaskFormValues, TaskStatusFilter} from './src/types/task';
 import {createTask, getFilteredTasks} from './src/utils/tasks';
 
 function App(): React.JSX.Element {
-  const {tasks, setTasks} = useStoredTasks();
+  const {isHydrated, tasks, setTasks} = useStoredTasks();
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<TaskStatusFilter>('all');
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
@@ -113,11 +113,15 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="light-content" backgroundColor="#102a43" />
-      <AppHeader activeScreen={activeScreen} onChangeScreen={setActiveScreen} />
+      <AppHeader
+        activeScreen={activeScreen}
+        canOpenDetails={selectedTask !== null}
+        onChangeScreen={setActiveScreen}
+      />
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}>
-        {renderScreen()}
+        {isHydrated ? renderScreen() : null}
       </ScrollView>
     </SafeAreaView>
   );

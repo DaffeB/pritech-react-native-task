@@ -35,6 +35,11 @@ export function SuggestionCard({onAddTask}: SuggestionCardProps) {
       setMessage('Loading suggestion...');
 
       const response = await fetch('https://dummyjson.com/todos/random');
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
       const data = (await response.json()) as SuggestionResponse;
 
       if (!data.todo) {
@@ -42,13 +47,13 @@ export function SuggestionCard({onAddTask}: SuggestionCardProps) {
       }
 
       onAddTask({
-        title: data.completed ? 'Completed idea from API' : 'Task idea from API',
+        title: data.completed ? 'Imported completed task' : 'Imported task idea',
         description: data.todo,
       });
 
       setMessage('Suggestion added successfully.');
     } catch {
-      setMessage('Could not fetch a suggestion right now.');
+      setMessage('Could not fetch a task from the API right now.');
     } finally {
       setLoading(false);
     }

@@ -1,5 +1,3 @@
-/* global jest */
-
 const mockAsyncStorage = {
   clear: jest.fn(),
   getAllKeys: jest.fn(() => Promise.resolve([])),
