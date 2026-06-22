@@ -14,13 +14,14 @@ type SuggestionCardProps = {
 };
 
 type SuggestionResponse = {
-  activity: string;
+  completed: boolean;
+  todo: string;
 };
 
 export function SuggestionCard({onAddTask}: SuggestionCardProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(
-    'Fetch a quick task suggestion from a public API.',
+    'Fetch a task idea from a free public API.',
   );
 
   const handleFetchSuggestion = async () => {
@@ -33,17 +34,16 @@ export function SuggestionCard({onAddTask}: SuggestionCardProps) {
       setLoading(true);
       setMessage('Loading suggestion...');
 
-      const response = await fetch('https://www.boredapi.com/api/activity');
-      console.log(response)
+      const response = await fetch('https://dummyjson.com/todos/random');
       const data = (await response.json()) as SuggestionResponse;
 
-      if (!data.activity) {
+      if (!data.todo) {
         throw new Error('Invalid response');
       }
 
       onAddTask({
-        title: 'API suggestion',
-        description: data.activity,
+        title: data.completed ? 'Completed idea from API' : 'Task idea from API',
+        description: data.todo,
       });
 
       setMessage('Suggestion added successfully.');
