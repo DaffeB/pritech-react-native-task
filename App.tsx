@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#000000',
     fontSize: 32,
-    fontWeight: '700',
+    fontWeight: '800',
   },
 });
 
