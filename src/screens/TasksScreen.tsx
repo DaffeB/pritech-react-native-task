@@ -1,9 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 import {FilterBar} from '../components/FilterBar';
 import {ScreenIntro} from '../components/ScreenIntro';
 import {TaskList} from '../components/TaskList';
+import {styles} from '../styles/screens/TasksScreenStyles';
 import {Task, TaskStatusFilter} from '../types/task';
 
 type TasksScreenProps = {
@@ -35,7 +36,7 @@ export function TasksScreen({
     <>
       <ScreenIntro
         eyebrow="OVERVIEW"
-        subtitle="Keep everything focused, simple, and easy to scan."
+        subtitle="Keep everything focused, simple, and easy to scan"
         title="Your tasks"
       />
 
@@ -66,31 +67,3 @@ export function TasksScreen({
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  statsRow: {
-    flexDirection: 'row',
-    gap: 10,
-    marginBottom: 26,
-  },
-  statCard: {
-    flex: 1,
-    backgroundColor: '#102a43',
-    borderRadius: 14,
-    padding: 16,
-  },
-  statCardAccent: {
-    backgroundColor: '#1f7a5c',
-  },
-  statValue: {
-    color: '#ffffff',
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 4,
-  },
-  statLabel: {
-    color: '#d9e2ec',
-    fontSize: 12,
-    fontWeight: '500',
-  },
-});

@@ -4,14 +4,14 @@ export const initialTasks: Task[] = [
   {
     id: '1',
     title: 'Prepare project structure',
-    description: 'Create a clear and simple folder structure for the app.',
+    description: 'Create a clear and simple folder structure for the app',
     completed: true,
     createdAt: '2026-06-22T09:00:00.000Z',
   },
   {
     id: '2',
     title: 'Build task list screen',
-    description: 'Show tasks with completion state and action buttons.',
+    description: 'Show tasks with completion state and action buttons',
     completed: false,
     createdAt: '2026-06-22T10:15:00.000Z',
   },

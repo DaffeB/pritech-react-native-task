@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
+import {styles} from '../styles/components/TaskListStyles';
 import {Task} from '../types/task';
 import {TaskItem} from './TaskItem';
 
@@ -22,7 +23,7 @@ export function TaskList({
       <View style={styles.emptyState}>
         <Text style={styles.emptyStateTitle}>No tasks found</Text>
         <Text style={styles.emptyStateText}>
-          Add a new task or adjust the current search and filter.
+          Add a new task or adjust the current search and filter
         </Text>
       </View>
     );
@@ -42,26 +43,3 @@ export function TaskList({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  emptyState: {
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    borderColor: '#e4e7ec',
-    borderRadius: 16,
-    borderWidth: 1,
-    padding: 24,
-  },
-  emptyStateTitle: {
-    color: '#16213e',
-    fontSize: 18,
-    fontWeight: '700',
-    marginBottom: 8,
-  },
-  emptyStateText: {
-    color: '#667085',
-    fontSize: 14,
-    lineHeight: 20,
-    textAlign: 'center',
-  },
-});

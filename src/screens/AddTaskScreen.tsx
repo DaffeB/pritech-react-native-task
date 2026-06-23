@@ -14,7 +14,7 @@ export function AddTaskScreen({onAddTask}: AddTaskScreenProps) {
     <>
       <ScreenIntro
         eyebrow="NEW TASK"
-        subtitle="Write a short title and description, or use the API suggestion below."
+        subtitle="Write a short title and description, or use the API suggestion below"
         title="Add a task"
       />
 

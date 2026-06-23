@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
-import {
-  ActivityIndicator,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ActivityIndicator, Pressable, Text, View} from 'react-native';
 
+import {styles} from '../styles/components/SuggestionCardStyles';
 import {TaskFormValues} from '../types/task';
 
 type SuggestionCardProps = {
@@ -21,18 +16,18 @@ type SuggestionResponse = {
 export function SuggestionCard({onAddTask}: SuggestionCardProps) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(
-    'Fetch a task idea from a free public API.',
+    'Fetch a task idea from a free public API',
   );
 
   const handleFetchSuggestion = async () => {
     if (typeof fetch !== 'function') {
-      setMessage('Fetch is not available in this environment.');
+      setMessage('Fetch is not available in this environment');
       return;
     }
 
     try {
       setLoading(true);
-      setMessage('Loading suggestion...');
+      setMessage('Loading suggestion');
 
       const response = await fetch('https://dummyjson.com/todos/random');
 
@@ -51,9 +46,9 @@ export function SuggestionCard({onAddTask}: SuggestionCardProps) {
         description: data.todo,
       });
 
-      setMessage('Suggestion added successfully.');
+      setMessage('Suggestion added successfully');
     } catch {
-      setMessage('Could not fetch a task from the API right now.');
+      setMessage('Could not fetch a task from the API right now');
     } finally {
       setLoading(false);
     }
@@ -78,44 +73,3 @@ export function SuggestionCard({onAddTask}: SuggestionCardProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 14,
-    marginBottom: 16,
-    padding: 20,
-  },
-  eyebrow: {
-    color: '#1f7a5c',
-    fontSize: 10,
-    fontWeight: '700',
-    letterSpacing: 1.1,
-    marginBottom: 6,
-  },
-  heading: {
-    color: '#0f172a',
-    fontSize: 20,
-    fontWeight: '700',
-    marginBottom: 8,
-  },
-  description: {
-    color: '#64748b',
-    fontSize: 14,
-    lineHeight: 22,
-    marginBottom: 16,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#1f7a5c',
-    borderRadius: 12,
-    minHeight: 46,
-    justifyContent: 'center',
-    paddingHorizontal: 14,
-  },
-  buttonText: {
-    color: '#ffffff',
-    fontSize: 13,
-    fontWeight: '600',
-  },
-});
