@@ -1,17 +1,13 @@
 import React, {useMemo, useState} from 'react';
-import {
-  Alert,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-} from 'react-native';
+import {Alert, ScrollView, StatusBar, View} from 'react-native';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 
 import {AppHeader} from './src/components/AppHeader';
 import {useStoredTasks} from './src/hooks/useStoredTasks';
 import {AddTaskScreen} from './src/screens/AddTaskScreen';
 import {TaskDetailsScreen} from './src/screens/TaskDetailsScreen';
 import {TasksScreen} from './src/screens/TasksScreen';
+import {styles} from './src/styles/AppStyles';
 import {Screen} from './src/types/navigation';
 import {Task, TaskFormValues, TaskStatusFilter} from './src/types/task';
 import {createTask, getFilteredTasks} from './src/utils/tasks';
@@ -111,32 +107,24 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar barStyle="light-content" backgroundColor="#102a43" />
-      <AppHeader
-        activeScreen={activeScreen}
-        canOpenDetails={selectedTask !== null}
-        onChangeScreen={setActiveScreen}
-      />
-      <ScrollView
-        contentContainerStyle={styles.content}
-        showsVerticalScrollIndicator={false}>
-        {isHydrated ? renderScreen() : null}
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView edges={['top']} style={styles.topSafeArea}>
+        <StatusBar barStyle="light-content" backgroundColor="#102a43" />
+        <AppHeader
+          activeScreen={activeScreen}
+          canOpenDetails={selectedTask !== null}
+          onChangeScreen={setActiveScreen}
+        />
+      </SafeAreaView>
+      <View style={styles.safeArea}>
+        <ScrollView
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}>
+          {isHydrated ? renderScreen() : null}
+        </ScrollView>
+      </View>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#f8fbff',
-  },
-  content: {
-    paddingHorizontal: 24,
-    paddingTop: 30,
-    paddingBottom: 52,
-  },
-});
 
 export default App;
